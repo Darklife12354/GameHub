@@ -38,7 +38,7 @@
             <nav>
                 <ul>
                     <li><a href="../../../index.html">Home</a></li>
-                    <li></li>
+                    <li><a href="../gb.html">GB</a></li>
                     <li><a href="../../gba/gba.html">GBA</a></li>
                     <li><a href="../../n64/n64.html">N64</a></li>
                     <li><a href="../../contact.html">Contact</a></li>
@@ -63,28 +63,6 @@
             <div class="button_rack">
                 <button id="terminal_clear_button" class="left">Clear Messages</button>
                 <button id="terminal_close_button" class="right">Close Terminal</button>
-            </div>
-        </div>
-        <div id="about" class="window">
-            <div id="about_message">
-                <h1>GameBoy Online</h1>
-                <p>This is a GameBoy Color emulator written purely in JavaScript by Grant Galitz.</p>
-                <p>The graphics blitting is done through HTML5 canvas, with the putImageData and drawImage functions.
-                </p>
-                <p>Save states are implemented through the window.localStorage object, and are serialized/deserialized
-                    through JSON. SRAM saving is also implemented through the window.localStorage object, and are
-                    serialized/deserialized through JSON. In order for save states to work properly on most browsers,
-                    you
-                    need set the maximum size limit for DOM storage higher, to meet the needs of the emulator's save
-                    data
-                    size.</p>
-                <p>For more information about this emulator and its source code, visit the GIT repository at: <a
-                        href="https://github.com/taisel/GameBoy-Online"
-                        target="_blank">https://github.com/taisel/GameBoy-Online</a>.
-                </p>
-            </div>
-            <div class="button_rack">
-                <button id="about_close_button" class="center">Close Popup</button>
             </div>
         </div>
         <div class="window" id="settings">

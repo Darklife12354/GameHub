@@ -16,14 +16,13 @@ function windowingInitialize() {
 	cout("windowingInitialize() called.", 0);
 	windowStacks[0] = windowCreate("GameBoy", true);
 	windowStacks[1] = windowCreate("terminal", false);
-	windowStacks[2] = windowCreate("about", false);
-	windowStacks[3] = windowCreate("settings", false);
-	windowStacks[4] = windowCreate("input_select", false);
-	windowStacks[5] = windowCreate("instructions", false);
-	windowStacks[6] = windowCreate("local_storage_popup", false);
-	windowStacks[7] = windowCreate("local_storage_listing", false);
-	windowStacks[8] = windowCreate("freeze_listing", false);
-	windowStacks[9] = windowCreate("save_importer", false);
+	windowStacks[2] = windowCreate("settings", false);
+	windowStacks[3] = windowCreate("input_select", false);
+	windowStacks[4] = windowCreate("instructions", false);
+	windowStacks[5] = windowCreate("local_storage_popup", false);
+	windowStacks[6] = windowCreate("local_storage_listing", false);
+	windowStacks[7] = windowCreate("freeze_listing", false);
+	windowStacks[8] = windowCreate("save_importer", false);
 	mainCanvas = document.getElementById("mainCanvas");
 	fullscreenCanvas = document.getElementById("fullscreen");
 	try {
