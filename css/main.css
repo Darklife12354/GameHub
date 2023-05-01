@@ -157,7 +157,6 @@ canvas {
 #menu {
     position: fixed;
     top: 50%;
-    left: -150px;
     transform: translateY(-50%);
     width: 150px;
     background-color: #fff;
