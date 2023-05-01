@@ -119,12 +119,6 @@ function registerGUIEvents() {
 	addEvent("click", document.getElementById("kill_cpu_clicker"), function () {
 		pause();
 	});
-	addEvent("click", document.getElementById("save_state_clicker"), function () {
-		save();
-	});
-	addEvent("click", document.getElementById("save_SRAM_state_clicker"), function () {
-		saveSRAM();
-	});
 	addEvent("click", document.getElementById("enable_sound"), function () {
 		settings[0] = document.getElementById("enable_sound").checked;
 		if (GameBoyEmulatorInitialized()) {
@@ -356,17 +350,6 @@ function convertToBinary(jsArray) {
 		binString += String.fromCharCode(jsArray[indexBin]);
 	}
 	return binString;
-}
-function generateLink(address, textData) {
-	var link = document.createElement("a");
-	link.href = address;
-	link.appendChild(document.createTextNode(textData));
-	return link;
-}
-function generateDownloadLink(address, textData, keyName) {
-	var link = generateLink(address, textData);
-	link.download = keyName + ".sav";
-	return link;
 }
 function checkStorageLength() {
 	try {
