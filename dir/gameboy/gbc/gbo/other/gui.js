@@ -16,13 +16,13 @@ function windowingInitialize() {
 	cout("windowingInitialize() called.", 0);
 	windowStacks[0] = windowCreate("GameBoy", true);
 	windowStacks[1] = windowCreate("terminal", false);
-	windowStacks[2] = windowCreate("settings", false);
-	windowStacks[3] = windowCreate("input_select", false);
-	windowStacks[4] = windowCreate("instructions", false);
-	windowStacks[5] = windowCreate("local_storage_popup", false);
-	windowStacks[6] = windowCreate("local_storage_listing", false);
-	windowStacks[7] = windowCreate("freeze_listing", false);
-	windowStacks[8] = windowCreate("save_importer", false);
+	windowStacks[3] = windowCreate("settings", false);
+	windowStacks[4] = windowCreate("input_select", false);
+	windowStacks[5] = windowCreate("instructions", false);
+	windowStacks[6] = windowCreate("local_storage_popup", false);
+	windowStacks[7] = windowCreate("local_storage_listing", false);
+	windowStacks[8] = windowCreate("freeze_listing", false);
+	windowStacks[9] = windowCreate("save_importer", false);
 	mainCanvas = document.getElementById("mainCanvas");
 	fullscreenCanvas = document.getElementById("fullscreen");
 	try {
@@ -54,17 +54,17 @@ function registerGUIEvents() {
 	addEvent("click", document.getElementById("terminal_clear_button"), clear_terminal);
 	addEvent("click", document.getElementById("local_storage_list_refresh_button"), refreshStorageListing);
 	addEvent("click", document.getElementById("terminal_close_button"), function () { windowStacks[1].hide() });
-	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[2].hide() });
-	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[3].hide() });
-	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[4].hide() });
-	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[6].hide() });
-	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[5].hide() });
-	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[8].hide() });
-	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[7].hide() });
-	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[2].show() });
-	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[6].show(); });
-	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[7].show(); });
-	addEvent("click", document.getElementById("view_importer"), function () { windowStacks[8].show() });
+	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[3].hide() });
+	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[4].hide() });
+	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[5].hide() });
+	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[7].hide() });
+	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[6].hide() });
+	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[9].hide() });
+	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[8].hide() });
+	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[3].show() });
+	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[7].show(); });
+	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[8].show(); });
+	addEvent("click", document.getElementById("view_importer"), function () { windowStacks[9].show() });
 	addEvent("keydown", document, keyDown);
 	addEvent("keyup", document, function (event) {
 		if (event.keyCode == 27) {
