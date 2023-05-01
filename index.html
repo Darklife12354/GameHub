@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>RetroGames</title>
+    <title>GameHub</title>
     <meta name="keywords"
         content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
     <meta name="description"
@@ -31,89 +31,6 @@
             </ul>
         </nav>
     </header>
-    <script>
-        const searchInput = document.getElementById('search');
-        searchInput.addEventListener('input', function () {
-            const query = this.value.toLowerCase();
-            const boxes = document.querySelectorAll('.box');
-            boxes.forEach(function (box) {
-                const title = box.querySelector('h2').textContent.toLowerCase();
-                if (title.indexOf(query) === -1) {
-                    box.style.display = 'none';
-                } else {
-                    box.style.display = 'block';
-                }
-            });
-        });
-    </script>
-    <script>
-        function loadRom(romUrl) {
-            window.location.href = 'gbc/gameboy.html?rom=' + romUrl;
-        }
-    </script>
-    <div id="games">
-        <script>
-            //Custom Script saving hundreds of lines 
-            function rom(name, directory, platform) {
-                var playLink;
-                if (platform === "GB" || platform === "GBC") {
-                    playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
-                } else if (platform === "GBA") {
-                    playLink = '<a href="gba/launcher.html#' + directory + '">Play</a>';
-                } else if (platform === "N64") {
-                    playLink = '<a href="N64/supermario.html">Play</a>';
-                } else {
-                    playLink = "Invalid platform";
-                    console.log('Error : Not A Valid GB, GBC, Or GBA File.')
-                }
-                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3><br>' + playLink + '</span>';
-                return romHtml;
-            }
-            //Add your own gb roms by giving it a name and the directory and platform such as
-            // rom("Name", "roms/rom.gb", "GB");
-            var roms = [
-                rom("Pokemon Red", "roms/red.gb", "GB"),
-                rom("Pokemon Red (Color)", "roms/redips.gb", "GB"),
-                rom("Pokemon Blue", "roms/blue.gb", "GB"),
-                rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
-                rom("Pokemon Green", "roms/green.gb", "GB"),
-                rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
-                rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
-                rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
-                rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
-                rom("Pokemon Ruby", "pokemonruby", "GBA"),
-                rom("Pokemon Saphire", "pokemonsaphire", "GBA"),
-                rom("Pokemon Emerald", "pokemonemerald", "GBA"),
-                rom("Pokemon FireRed", "pokemonred", "GBA"),
-                rom("Pokemon LeafGreen", "pokemongreen", "GBA"),
-                rom("Pokemon Mystery Red", "mysteryred", "GBA"),
-                rom("Mario Land", "roms/marioland.gb", "GB"),
-                rom("Mario Land 2", "roms/marioland2.gb", "GB"),
-                rom("Mario Party", "marioparty", "GBA"),
-                rom("Mario Kart", "mariokart", "GBA"),
-                rom("Mario & Luigi Super Star", "superstar", "GBA"),
-                rom("Mario Advanced", "supermarioadvance", "GBA"),
-                rom("Mario Advanced 2", "supermarioadvance2", "GBA"),
-                rom("Mario Advanced 3", "supermarioadvance3", "GBA"),
-                rom("Mario Advanced 4", "supermarioadvance4", "GBA"),
-                rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
-                rom("Donkey Kong Country", "dkcountry", "GBA"),
-                rom("Donkey Kong Country 2", "dkcountry2", "GBA"),
-                rom("Donkey Kong Country 3", "dkcountry3", "GBA"),
-                rom("Donkey Kong - King of Swing", "dkkingofswing", "GBA"),
-                rom("PacMan", "roms/pacman.gb", "GB"),
-                rom("PacMan Special Color Edition", "roms/pacmancolor.gbc", "GBC"),
-                rom("PacMan Collection", "pacmancollection", "GBA"),
-                rom("Tetris", "roms/tetris.gb", "GB"),
-                rom("Super Mario 64", "n64/supermario.html", "N64")
-            ];
-            var romsHtml = "";
-            for (var i = 0; i < roms.length; i++) {
-                romsHtml += roms[i];
-            }
-            document.getElementById("games").innerHTML = romsHtml;
-        </script>
-    </div>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('sw.js')
