@@ -18,7 +18,6 @@ function windowingInitialize() {
 	windowStacks[1] = windowCreate("terminal", false);
 	windowStacks[3] = windowCreate("settings", false);
 	windowStacks[4] = windowCreate("input_select", false);
-	windowStacks[5] = windowCreate("instructions", false);
 	windowStacks[6] = windowCreate("local_storage_popup", false);
 	windowStacks[7] = windowCreate("local_storage_listing", false);
 	windowStacks[8] = windowCreate("freeze_listing", false);
@@ -57,7 +56,6 @@ function registerGUIEvents() {
 
 	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[3].hide() });
 	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[4].hide() });
-	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[5].hide() });
 	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[7].hide() });
 	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[6].hide() });
 	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[9].hide() });
@@ -310,7 +308,6 @@ function registerGUIEvents() {
 	addEvent("click", document.getElementById("view_fullscreen"), fullscreenPlayer);
 	new popupMenu(document.getElementById("GameBoy_view_menu"), document.getElementById("GameBoy_view_popup"));
 	addEvent("click", document.getElementById("view_terminal"), function () { windowStacks[1].show() });
-	addEvent("click", document.getElementById("view_instructions"), function () { windowStacks[5].show() });
 	addEvent("mouseup", document.getElementById("gfx"), initNewCanvasSize);
 	addEvent("resize", window, initNewCanvasSize);
 	addEvent("unload", window, function () {
