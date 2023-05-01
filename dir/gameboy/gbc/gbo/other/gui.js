@@ -17,19 +17,15 @@ function windowingInitialize() {
 	windowStacks[0] = windowCreate("GameBoy", true);
 	windowStacks[1] = windowCreate("terminal", false);
 	windowStacks[3] = windowCreate("settings", false);
-	windowStacks[6] = windowCreate("local_storage_popup", false);
-	windowStacks[7] = windowCreate("local_storage_listing", false);
 	windowStacks[8] = windowCreate("freeze_listing", false);
 	mainCanvas = document.getElementById("mainCanvas");
 	fullscreenCanvas = document.getElementById("fullscreen");
 	try {
-		
 		registerGUIEvents();
 	}
 	catch (error) {
 		cout("Fatal windowing error: \"" + error.message + "\" file:" + error.fileName + " line: " + error.lineNumber, 2);
 	}
-	
 	document.getElementById("enable_sound").checked = settings[0];
 	document.getElementById("enable_gbc_bios").checked = settings[1];
 	document.getElementById("disable_colors").checked = settings[2];
@@ -51,22 +47,16 @@ function registerGUIEvents() {
 	addEvent("click", document.getElementById("terminal_clear_button"), clear_terminal);
 	addEvent("click", document.getElementById("local_storage_list_refresh_button"), refreshStorageListing);
 	addEvent("click", document.getElementById("terminal_close_button"), function () { windowStacks[1].hide() });
-
 	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[3].hide() });
-	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[7].hide() });
-	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[6].hide() });
 	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[8].hide() });
 	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[3].show() });
-	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[7].show(); });
 	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[8].show(); });
 	addEvent("keydown", document, keyDown);
 	addEvent("keyup", document, function (event) {
 		if (event.keyCode == 27) {
-			
 			fullscreenPlayer();
 		}
 		else {
-			
 			keyUp(event);
 		}
 	});
@@ -277,7 +267,6 @@ function findValue(key) {
 		}
 	}
 	catch (error) {
-		
 		if (window.globalStorage[location.hostname].getItem(key) != null) {
 			return JSON.parse(window.globalStorage[location.hostname].getItem(key));
 		}
@@ -289,7 +278,6 @@ function setValue(key, value) {
 		window.localStorage.setItem(key, JSON.stringify(value));
 	}
 	catch (error) {
-		
 		window.globalStorage[location.hostname].setItem(key, JSON.stringify(value));
 	}
 }
@@ -298,7 +286,6 @@ function deleteValue(key) {
 		window.localStorage.removeItem(key);
 	}
 	catch (error) {
-		
 		window.globalStorage[location.hostname].removeItem(key);
 	}
 }
@@ -362,38 +349,6 @@ function outputLocalStorageRequestLink(keyName) {
 	storageContainerDiv.appendChild(linkNode)
 	return storageContainerDiv;
 }
-function popupStorageDialog(keyName) {
-	var subContainer = document.getElementById("storagePopupMasterContainer");
-	var parentContainer = document.getElementById("storagePopupMasterParent");
-	parentContainer.removeChild(subContainer);
-	subContainer = document.createElement("div");
-	subContainer.id = "storagePopupMasterContainer";
-	parentContainer.appendChild(subContainer);
-	var downloadDiv = document.createElement("div");
-	downloadDiv.id = "storagePopupDownload";
-	if (keyName.substring(0, 9) == "B64_SRAM_") {
-		var downloadDiv2 = document.createElement("div");
-		downloadDiv2.id = "storagePopupDownloadRAW";
-		downloadDiv2.appendChild(outputLocalStorageLink("Download RAW save data.", findValue(keyName), keyName));
-		subContainer.appendChild(downloadDiv2);
-		downloadDiv.appendChild(outputLocalStorageLink("Download in import compatible format.", base64(generateBlob(keyName.substring(4), base64_decode(findValue(keyName)))), keyName));
-	}
-	else if (keyName.substring(0, 5) == "SRAM_") {
-		var downloadDiv2 = document.createElement("div");
-		downloadDiv2.id = "storagePopupDownloadRAW";
-		downloadDiv2.appendChild(outputLocalStorageLink("Download RAW save data.", base64(convertToBinary(findValue(keyName))), keyName));
-		subContainer.appendChild(downloadDiv2);
-		downloadDiv.appendChild(outputLocalStorageLink("Download in import compatible format.", base64(generateBlob(keyName, convertToBinary(findValue(keyName)))), keyName));
-	}
-	else {
-		downloadDiv.appendChild(outputLocalStorageLink("Download in import compatible format.", base64(generateBlob(keyName, JSON.stringify(findValue(keyName)))), keyName));
-	}
-	var deleteLink = generateLink("javascript:deleteStorageSlot(\"" + keyName + "\")", "Delete data item from HTML5 local storage.");
-	deleteLink.id = "storagePopupDelete";
-	subContainer.appendChild(downloadDiv);
-	subContainer.appendChild(deleteLink);
-	windowStacks[6].show();
-}
 function convertToBinary(jsArray) {
 	var length = jsArray.length;
 	var binString = "";
@@ -401,11 +356,6 @@ function convertToBinary(jsArray) {
 		binString += String.fromCharCode(jsArray[indexBin]);
 	}
 	return binString;
-}
-function deleteStorageSlot(keyName) {
-	deleteValue(keyName);
-	windowStacks[6].hide();
-	refreshStorageListing();
 }
 function generateLink(address, textData) {
 	var link = document.createElement("a");
@@ -423,7 +373,6 @@ function checkStorageLength() {
 		return window.localStorage.length;
 	}
 	catch (error) {
-		
 		return window.globalStorage[location.hostname].length;
 	}
 }
@@ -450,7 +399,6 @@ function findKey(keyNum) {
 		return window.localStorage.key(keyNum);
 	}
 	catch (error) {
-		
 		return window.globalStorage[location.hostname].key(keyNum);
 	}
 	return null;
@@ -459,7 +407,6 @@ function isDescendantOf(ParentElement, toCheck) {
 	if (!ParentElement || !toCheck) {
 		return false;
 	}
-	
 	function traverseTree(domElement) {
 		while (domElement != null) {
 			if (domElement.nodeType == 1) {
@@ -497,11 +444,9 @@ function pageYCoord(event) {
 	return event.pageY;
 }
 function mouseLeaveVerify(oElement, event) {
-	
 	return isDescendantOf(oElement, (typeof event.target != "undefined") ? event.target : event.srcElement) && !isDescendantOf(oElement, (typeof event.relatedTarget != "undefined") ? event.relatedTarget : event.toElement);
 }
 function mouseEnterVerify(oElement, event) {
-	
 	return !isDescendantOf(oElement, (typeof event.target != "undefined") ? event.target : event.srcElement) && isDescendantOf(oElement, (typeof event.relatedTarget != "undefined") ? event.relatedTarget : event.fromElement);
 }
 function addEvent(sEvent, oElement, fListener) {
@@ -510,7 +455,7 @@ function addEvent(sEvent, oElement, fListener) {
 		cout("In addEvent() : Standard addEventListener() called to add a(n) \"" + sEvent + "\" event.", -1);
 	}
 	catch (error) {
-		oElement.attachEvent("on" + sEvent, fListener);	
+		oElement.attachEvent("on" + sEvent, fListener);
 		cout("In addEvent() : Nonstandard attachEvent() called to add an \"on" + sEvent + "\" event.", -1);
 	}
 }
@@ -520,7 +465,7 @@ function removeEvent(sEvent, oElement, fListener) {
 		cout("In removeEvent() : Standard removeEventListener() called to remove a(n) \"" + sEvent + "\" event.", -1);
 	}
 	catch (error) {
-		oElement.detachEvent("on" + sEvent, fListener);	
+		oElement.detachEvent("on" + sEvent, fListener);
 		cout("In removeEvent() : Nonstandard detachEvent() called to remove an \"on" + sEvent + "\" event.", -1);
 	}
 }
