@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Gameboy - GameHub</title>
+    <meta name="keywords"
+        content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
+    <meta name="description"
+        content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
+    <meta name="theme-color" content="#20C20E">
+    <meta name="author" content="Darklife12354">
+    <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="manifest" href="../../app/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon/favicon-16x16.png">
+</head>
+
+<body>
+    <script>
+        function loadRom(romUrl) {
+            window.location.href = 'script/gameboy.html?rom=' + romUrl;
+        }
+    </script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+                <li><a href="../gba/index.html">GBA</a></li>
+                <li><a href="../n64/supermario.html">N64</a></li>
+                <li><input type="text" id="search" placeholder="Search Games..."></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach(function (box) {
+                const title = box.querySelector('h2').textContent.toLowerCase();
+                if (title.indexOf(query) === -1) {
+                    box.style.display = 'none';
+                } else {
+                    box.style.display = 'block';
+                }
+            });
+        });
+    </script>
+    <div id="games">
+        <script>
+            function rom(name, directory, platform) {
+                var playLink;
+                if (platform === "GB" || platform === "GBC") {
+                    playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
+                } else {
+                    playLink = "Invalid platform";
+                    console.log('Error : Not A Valid GB, GBC, Or GBA File.')
+                }
+                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3><br>' + playLink + '</span>';
+                return romHtml;
+            }
+            var roms = [
+                rom("Pokemon Red", "roms/red.gb", "GB"),
+                rom("Pokemon Red (Color)", "roms/redips.gb", "GB"),
+                rom("Pokemon Blue", "roms/blue.gb", "GB"),
+                rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
+                rom("Pokemon Green", "roms/green.gb", "GB"),
+                rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
+                rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
+                rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
+                rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
+                rom("Mario Land", "roms/marioland.gb", "GB"),
+                rom("Mario Land 2", "roms/marioland2.gb", "GB"),
+                rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
+                rom("PacMan", "roms/pacman.gb", "GB"),
+                rom("PacMan Special Color Edition", "roms/pacmancolor.gbc", "GBC"),
+                rom("Tetris", "roms/tetris.gb", "GB"),
+            ];
+            var romsHtml = "";
+            for (var i = 0; i < roms.length; i++) {
+                romsHtml += roms[i];
+            }
+            document.getElementById("games").innerHTML = romsHtml;
+        </script>
+    </div>
+</body>
+
+</html>

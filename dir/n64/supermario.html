@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nintendo 64 - GameHub</title>
+  <meta name="keywords"
+    content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
+  <meta name="description"
+    content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
+  <meta name="theme-color" content="#20C20E">
+  <meta name="author" content="Darklife12354">
+  <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="manifest" href="../../app/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon/favicon-16x16.png">
+  <style>
+    body,
+    html {
+      background-color: #000000;
+      image-rendering: pixelated;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a href="../gbc/index.html">GB/GBC</a></li>
+            <li><a href="../gba/index.html">GBA</a></li>
+        </ul>
+    </nav>
+</header>
+  <div id="container">
+    <canvas class="emscripten" id="canvas"></canvas>
+  </div>
+  <script type="text/javascript">
+    var Module = {
+      preRun: [],
+      postRun: [],
+      print: (function () {
+        return function (text) {
+          if (arguments.length > 1)
+            text = Array.prototype.slice.call(arguments).join(" ");
+          console.log(text);
+        };
+      })(),
+      printErr: function (text) {
+        if (arguments.length > 1)
+          text = Array.prototype.slice.call(arguments).join(" ");
+        console.error(text);
+      },
+      canvas: (function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.addEventListener(
+          "webglcontextlost",
+          function (e) {
+            alert("WebGL context lost. You will need to reload the page.");
+            e.preventDefault();
+          },
+          false
+        );
+        return canvas;
+      })(),
+      setStatus: function (text) { },
+    };
+  </script>
+  <script async type="text/javascript" src="sm64.us.f3dex2e.js"></script>
+  <script></script>
+</body>
+
+</html>
