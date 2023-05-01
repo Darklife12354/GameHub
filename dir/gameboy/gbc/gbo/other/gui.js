@@ -54,19 +54,17 @@ function registerGUIEvents() {
 	addEvent("click", document.getElementById("terminal_clear_button"), clear_terminal);
 	addEvent("click", document.getElementById("local_storage_list_refresh_button"), refreshStorageListing);
 	addEvent("click", document.getElementById("terminal_close_button"), function () { windowStacks[1].hide() });
-	addEvent("click", document.getElementById("about_close_button"), function () { windowStacks[2].hide() });
-	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[3].hide() });
-	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[4].hide() });
-	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[5].hide() });
-	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[7].hide() });
-	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[6].hide() });
-	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[9].hide() });
-	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[8].hide() });
-	addEvent("click", document.getElementById("GameBoy_about_menu"), function () { windowStacks[2].show() });
-	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[3].show() });
-	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[7].show(); });
-	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[8].show(); });
-	addEvent("click", document.getElementById("view_importer"), function () { windowStacks[9].show() });
+	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[2].hide() });
+	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[3].hide() });
+	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[4].hide() });
+	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[6].hide() });
+	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[5].hide() });
+	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[8].hide() });
+	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[7].hide() });
+	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[2].show() });
+	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[6].show(); });
+	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[7].show(); });
+	addEvent("click", document.getElementById("view_importer"), function () { windowStacks[8].show() });
 	addEvent("keydown", document, keyDown);
 	addEvent("keyup", document, function (event) {
 		if (event.keyCode == 27) {
