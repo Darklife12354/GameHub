@@ -4,6 +4,8 @@
 
 <head>
     <script src="js/embed.js"></script>
+    <script src="gbo/other/windowStack.js"></script>
+    <script src="gbo/other/terminal.js"></script>
     <script src="gbo/other/gui.js"></script>
     <script src="gbo/other/base64.js"></script>
     <script src="gbo/other/json2.js"></script>
@@ -23,6 +25,7 @@
         var DEBUG_MESSAGES = false;
         var DEBUG_WINDOWING = false;
         window.onload = () => {
+            windowingInitialize();
             gbc_load_url(getQueryParam('rom'));
         };
     </script>
@@ -47,12 +50,18 @@
                 <span id="GameBoy_file_menu">File</span>
                 <span id="GameBoy_settings_menu">Settings</span>
                 <span id="GameBoy_view_menu">View</span>
-                <span id="GameBoy_about_menu">About</span>
             </div>
             <div id="gfx">
                 <canvas id="mainCanvas">
                 <span id="title">GameBoy</span>
                 <span id="port_title">Online</span>
+            </div>
+        </div>
+        <div id="terminal" class="window">
+            <div id="terminal_output">
+            <div class="button_rack">
+                <button id="terminal_clear_button" class="left">Clear Messages</button>
+                <button id="terminal_close_button" class="right">Close Terminal</button>
             </div>
         </div>
         <div class="window" id="settings">
@@ -122,6 +131,22 @@
                 <button id="settings_close_button" class="center">Close Settings</button>
             </div>
         </div>
+        <div id="instructions" class="window">
+            <div id="keycodes">
+                <h1>Keyboard Controls:</h1>
+                <ul>
+                    <li>X/J are A.</li>
+                    <li>Z/Y/Q are B.</li>
+                    <li>Shift is Select.</li>
+                    <li>Enter is Start.</li>
+                    <li>The d-pad is the control pad.</li>
+                    <li>The escape key (esc) allows you to get in and out of fullscreen mode.</li>
+                </ul>
+            </div>
+            <div class="button_rack">
+                <button id="instructions_close_button" class="center">Close Instructions</button>
+            </div>
+        </div>
         <div id="input_select" class="window">
             <form>
                 <input type="file" id="local_file_open" />
@@ -182,6 +207,8 @@
             <li id="kill_cpu_clicker">Pause</li>
         </ul>
         <ul class="menu" id="GameBoy_view_popup">
+            <li id="view_terminal">Terminal</li>
+            <li id="view_instructions">Instructions</li>
             <li id="view_importer">Save Importer</li>
             <li id="local_storage_list_menu">Save Manager</li>
             <li id="freeze_list_menu">Freeze State Manager</li>

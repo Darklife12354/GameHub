@@ -12,6 +12,311 @@ var keyZones = [
 	["select", [16]],
 	["start", [13]]
 ];
+function windowingInitialize() {
+	cout("windowingInitialize() called.", 0);
+	windowStacks[0] = windowCreate("GameBoy", true);
+	windowStacks[1] = windowCreate("terminal", false);
+	windowStacks[3] = windowCreate("settings", false);
+	windowStacks[4] = windowCreate("input_select", false);
+	windowStacks[5] = windowCreate("instructions", false);
+	windowStacks[6] = windowCreate("local_storage_popup", false);
+	windowStacks[7] = windowCreate("local_storage_listing", false);
+	windowStacks[8] = windowCreate("freeze_listing", false);
+	windowStacks[9] = windowCreate("save_importer", false);
+	mainCanvas = document.getElementById("mainCanvas");
+	fullscreenCanvas = document.getElementById("fullscreen");
+	try {
+		
+		registerGUIEvents();
+	}
+	catch (error) {
+		cout("Fatal windowing error: \"" + error.message + "\" file:" + error.fileName + " line: " + error.lineNumber, 2);
+	}
+	
+	document.getElementById("enable_sound").checked = settings[0];
+	document.getElementById("enable_gbc_bios").checked = settings[1];
+	document.getElementById("disable_colors").checked = settings[2];
+	document.getElementById("rom_only_override").checked = settings[9];
+	document.getElementById("mbc_enable_override").checked = settings[10];
+	document.getElementById("enable_colorization").checked = settings[4];
+	document.getElementById("do_minimal").checked = showAsMinimal;
+	document.getElementById("software_resizing").checked = settings[12];
+	document.getElementById("typed_arrays_disallow").checked = settings[5];
+	document.getElementById("gb_boot_rom_utilized").checked = settings[11];
+	document.getElementById("resize_smoothing").checked = settings[13];
+	document.getElementById("channel1").checked = settings[14][0];
+	document.getElementById("channel2").checked = settings[14][1];
+	document.getElementById("channel3").checked = settings[14][2];
+	document.getElementById("channel4").checked = settings[14][3];
+}
+function registerGUIEvents() {
+	cout("In registerGUIEvents() : Registering GUI Events.", -1);
+	addEvent("click", document.getElementById("terminal_clear_button"), clear_terminal);
+	addEvent("click", document.getElementById("local_storage_list_refresh_button"), refreshStorageListing);
+	addEvent("click", document.getElementById("terminal_close_button"), function () { windowStacks[1].hide() });
+
+	addEvent("click", document.getElementById("settings_close_button"), function () { windowStacks[3].hide() });
+	addEvent("click", document.getElementById("input_select_close_button"), function () { windowStacks[4].hide() });
+	addEvent("click", document.getElementById("instructions_close_button"), function () { windowStacks[5].hide() });
+	addEvent("click", document.getElementById("local_storage_list_close_button"), function () { windowStacks[7].hide() });
+	addEvent("click", document.getElementById("local_storage_popup_close_button"), function () { windowStacks[6].hide() });
+	addEvent("click", document.getElementById("save_importer_close_button"), function () { windowStacks[9].hide() });
+	addEvent("click", document.getElementById("freeze_list_close_button"), function () { windowStacks[8].hide() });
+	addEvent("click", document.getElementById("GameBoy_settings_menu"), function () { windowStacks[3].show() });
+	addEvent("click", document.getElementById("local_storage_list_menu"), function () { refreshStorageListing(); windowStacks[7].show(); });
+	addEvent("click", document.getElementById("freeze_list_menu"), function () { refreshFreezeListing(); windowStacks[8].show(); });
+	addEvent("click", document.getElementById("view_importer"), function () { windowStacks[9].show() });
+	addEvent("keydown", document, keyDown);
+	addEvent("keyup", document, function (event) {
+		if (event.keyCode == 27) {
+			
+			fullscreenPlayer();
+		}
+		else {
+			
+			keyUp(event);
+		}
+	});
+	addEvent("MozOrientation", window, GameBoyGyroSignalHandler);
+	addEvent("deviceorientation", window, GameBoyGyroSignalHandler);
+	new popupMenu(document.getElementById("GameBoy_file_menu"), document.getElementById("GameBoy_file_popup"));
+	addEvent("click", document.getElementById("data_uri_clicker"), function () {
+		var datauri = prompt("Please input the ROM image's Base 64 Encoded Text:", "");
+		if (datauri != null && datauri.length > 0) {
+			try {
+				cout(Math.floor(datauri.length * 3 / 4) + " bytes of data submitted by form (text length of " + datauri.length + ").", 0);
+				initPlayer();
+				start(mainCanvas, base64_decode(datauri));
+			}
+			catch (error) {
+				alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+			}
+		}
+	});
+	addEvent("click", document.getElementById("set_volume"), function () {
+		if (GameBoyEmulatorInitialized()) {
+			var volume = prompt("Set the volume here:", "1.0");
+			if (volume != null && volume.length > 0) {
+				settings[3] = Math.min(Math.max(parseFloat(volume), 0), 1);
+				gameboy.changeVolume();
+			}
+		}
+	});
+	addEvent("click", document.getElementById("set_speed"), function () {
+		if (GameBoyEmulatorInitialized()) {
+			var speed = prompt("Set the emulator speed here:", "1.0");
+			if (speed != null && speed.length > 0) {
+				gameboy.setSpeed(Math.max(parseFloat(speed), 0.001));
+			}
+		}
+	});
+	addEvent("click", document.getElementById("internal_file_clicker"), function () {
+		var file_opener = document.getElementById("local_file_open");
+		windowStacks[4].show();
+		file_opener.click();
+	});
+	addEvent("blur", document.getElementById("input_select"), function () {
+		windowStacks[4].hide();
+	});
+	addEvent("change", document.getElementById("local_file_open"), function () {
+		windowStacks[4].hide();
+		if (typeof this.files != "undefined") {
+			try {
+				if (this.files.length >= 1) {
+					cout("Reading the local file \"" + this.files[0].name + "\"", 0);
+					try {
+						
+						var binaryHandle = new FileReader();
+						binaryHandle.onload = function () {
+							if (this.readyState == 2) {
+								cout("file loaded.", 0);
+								try {
+									initPlayer();
+									start(mainCanvas, this.result);
+								}
+								catch (error) {
+									alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+								}
+							}
+							else {
+								cout("loading file, please wait...", 0);
+							}
+						}
+						binaryHandle.readAsBinaryString(this.files[this.files.length - 1]);
+					}
+					catch (error) {
+						cout("Browser does not support the FileReader object, falling back to the non-standard File object access,", 2);
+						
+						var romImageString = this.files[this.files.length - 1].getAsBinary();
+						try {
+							initPlayer();
+							start(mainCanvas, romImageString);
+						}
+						catch (error) {
+							alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+						}
+					}
+				}
+				else {
+					cout("Incorrect number of files selected for local loading.", 1);
+				}
+			}
+			catch (error) {
+				cout("Could not load in a locally stored ROM file.", 2);
+			}
+		}
+		else {
+			cout("could not find the handle on the file to open.", 2);
+		}
+	});
+	addEvent("change", document.getElementById("save_open"), function () {
+		windowStacks[9].hide();
+		if (typeof this.files != "undefined") {
+			try {
+				if (this.files.length >= 1) {
+					cout("Reading the local file \"" + this.files[0].name + "\" for importing.", 0);
+					try {
+						
+						var binaryHandle = new FileReader();
+						binaryHandle.onload = function () {
+							if (this.readyState == 2) {
+								cout("file imported.", 0);
+								try {
+									import_save(this.result);
+									refreshStorageListing();
+								}
+								catch (error) {
+									alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+								}
+							}
+							else {
+								cout("importing file, please wait...", 0);
+							}
+						}
+						binaryHandle.readAsBinaryString(this.files[this.files.length - 1]);
+					}
+					catch (error) {
+						cout("Browser does not support the FileReader object, falling back to the non-standard File object access,", 2);
+						
+						var romImageString = this.files[this.files.length - 1].getAsBinary();
+						try {
+							import_save(romImageString);
+							refreshStorageListing();
+						}
+						catch (error) {
+							alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+						}
+					}
+				}
+				else {
+					cout("Incorrect number of files selected for local loading.", 1);
+				}
+			}
+			catch (error) {
+				cout("Could not load in a locally stored ROM file.", 2);
+			}
+		}
+		else {
+			cout("could not find the handle on the file to open.", 2);
+		}
+	});
+	addEvent("click", document.getElementById("restart_cpu_clicker"), function () {
+		if (GameBoyEmulatorInitialized()) {
+			try {
+				if (!gameboy.fromSaveState) {
+					initPlayer();
+					start(mainCanvas, gameboy.getROMImage());
+				}
+				else {
+					initPlayer();
+					openState(gameboy.savedStateFileName, mainCanvas);
+				}
+			}
+			catch (error) {
+				alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+			}
+		}
+		else {
+			cout("Could not restart, as a previous emulation session could not be found.", 1);
+		}
+	});
+	addEvent("click", document.getElementById("run_cpu_clicker"), function () {
+		run();
+	});
+	addEvent("click", document.getElementById("kill_cpu_clicker"), function () {
+		pause();
+	});
+	addEvent("click", document.getElementById("save_state_clicker"), function () {
+		save();
+	});
+	addEvent("click", document.getElementById("save_SRAM_state_clicker"), function () {
+		saveSRAM();
+	});
+	addEvent("click", document.getElementById("enable_sound"), function () {
+		settings[0] = document.getElementById("enable_sound").checked;
+		if (GameBoyEmulatorInitialized()) {
+			gameboy.initSound();
+		}
+	});
+	addEvent("click", document.getElementById("disable_colors"), function () {
+		settings[2] = document.getElementById("disable_colors").checked;
+	});
+	addEvent("click", document.getElementById("rom_only_override"), function () {
+		settings[9] = document.getElementById("rom_only_override").checked;
+	});
+	addEvent("click", document.getElementById("mbc_enable_override"), function () {
+		settings[10] = document.getElementById("mbc_enable_override").checked;
+	});
+	addEvent("click", document.getElementById("enable_gbc_bios"), function () {
+		settings[1] = document.getElementById("enable_gbc_bios").checked;
+	});
+	addEvent("click", document.getElementById("enable_colorization"), function () {
+		settings[4] = document.getElementById("enable_colorization").checked;
+	});
+	addEvent("click", document.getElementById("do_minimal"), function () {
+		showAsMinimal = document.getElementById("do_minimal").checked;
+		fullscreenCanvas.className = (showAsMinimal) ? "minimum" : "maximum";
+	});
+	addEvent("click", document.getElementById("software_resizing"), function () {
+		settings[12] = document.getElementById("software_resizing").checked;
+		if (GameBoyEmulatorInitialized()) {
+			gameboy.initLCD();
+		}
+	});
+	addEvent("click", document.getElementById("typed_arrays_disallow"), function () {
+		settings[5] = document.getElementById("typed_arrays_disallow").checked;
+	});
+	addEvent("click", document.getElementById("gb_boot_rom_utilized"), function () {
+		settings[11] = document.getElementById("gb_boot_rom_utilized").checked;
+	});
+	addEvent("click", document.getElementById("resize_smoothing"), function () {
+		settings[13] = document.getElementById("resize_smoothing").checked;
+		if (GameBoyEmulatorInitialized()) {
+			gameboy.initLCD();
+		}
+	});
+	addEvent("click", document.getElementById("channel1"), function () {
+		settings[14][0] = document.getElementById("channel1").checked;
+	});
+	addEvent("click", document.getElementById("channel2"), function () {
+		settings[14][1] = document.getElementById("channel2").checked;
+	});
+	addEvent("click", document.getElementById("channel3"), function () {
+		settings[14][2] = document.getElementById("channel3").checked;
+	});
+	addEvent("click", document.getElementById("channel4"), function () {
+		settings[14][3] = document.getElementById("channel4").checked;
+	});
+	addEvent("click", document.getElementById("view_fullscreen"), fullscreenPlayer);
+	new popupMenu(document.getElementById("GameBoy_view_menu"), document.getElementById("GameBoy_view_popup"));
+	addEvent("click", document.getElementById("view_terminal"), function () { windowStacks[1].show() });
+	addEvent("click", document.getElementById("view_instructions"), function () { windowStacks[5].show() });
+	addEvent("mouseup", document.getElementById("gfx"), initNewCanvasSize);
+	addEvent("resize", window, initNewCanvasSize);
+	addEvent("unload", window, function () {
+		autoSave();
+	});
+}
 function keyDown(event) {
 	var keyCode = event.keyCode;
 	var keyMapLength = keyZones.length;
