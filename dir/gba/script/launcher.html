@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--Required Scripts-->
+    <script src="IodineGBA/includes/TypedArrayShim.js"></script>
+    <script src="IodineGBA/core/Cartridge.js"></script>
+    <script src="IodineGBA/core/DMA.js"></script>
+    <script src="IodineGBA/core/Emulator.js"></script>
+    <script src="IodineGBA/core/Graphics.js"></script>
+    <script src="IodineGBA/core/RunLoop.js"></script>
+    <script src="IodineGBA/core/Memory.js"></script>
+    <script src="IodineGBA/core/IRQ.js"></script>
+    <script src="IodineGBA/core/JoyPad.js"></script>
+    <script src="IodineGBA/core/Serial.js"></script>
+    <script src="IodineGBA/core/Sound.js"></script>
+    <script src="IodineGBA/core/Timer.js"></script>
+    <script src="IodineGBA/core/Wait.js"></script>
+    <script src="IodineGBA/core/CPU.js"></script>
+    <script src="IodineGBA/core/Saves.js"></script>
+    <script src="IodineGBA/core/sound/FIFO.js"></script>
+    <script src="IodineGBA/core/sound/Channel1.js"></script>
+    <script src="IodineGBA/core/sound/Channel2.js"></script>
+    <script src="IodineGBA/core/sound/Channel3.js"></script>
+    <script src="IodineGBA/core/sound/Channel4.js"></script>
+    <script src="IodineGBA/core/CPU/ARM.js"></script>
+    <script src="IodineGBA/core/CPU/THUMB.js"></script>
+    <script src="IodineGBA/core/CPU/CPSR.js"></script>
+    <script src="IodineGBA/core/graphics/Renderer.js"></script>
+    <script src="IodineGBA/core/graphics/RendererProxy.js"></script>
+    <script src="IodineGBA/core/graphics/BGTEXT.js"></script>
+    <script src="IodineGBA/core/graphics/BG2FrameBuffer.js"></script>
+    <script src="IodineGBA/core/graphics/BGMatrix.js"></script>
+    <script src="IodineGBA/core/graphics/AffineBG.js"></script>
+    <script src="IodineGBA/core/graphics/ColorEffects.js"></script>
+    <script src="IodineGBA/core/graphics/Mosaic.js"></script>
+    <script src="IodineGBA/core/graphics/OBJ.js"></script>
+    <script src="IodineGBA/core/graphics/OBJWindow.js"></script>
+    <script src="IodineGBA/core/graphics/Window.js"></script>
+    <script src="IodineGBA/core/graphics/Compositor.js"></script>
+    <script src="IodineGBA/core/memory/DMA0.js"></script>
+    <script src="IodineGBA/core/memory/DMA1.js"></script>
+    <script src="IodineGBA/core/memory/DMA2.js"></script>
+    <script src="IodineGBA/core/memory/DMA3.js"></script>
+    <script src="IodineGBA/core/cartridge/SaveDeterminer.js"></script>
+    <script src="IodineGBA/core/cartridge/SRAM.js"></script>
+    <script src="IodineGBA/core/cartridge/FLASH.js"></script>
+    <script src="IodineGBA/core/cartridge/EEPROM.js"></script>
+    <!--Add your webpage scripts below-->
+    <script src="user_scripts/XAudioJS/swfobject.js"></script>
+    <script src="user_scripts/XAudioJS/resampler.js"></script>
+    <script src="user_scripts/XAudioJS/XAudioServer.js"></script>
+    <script src="user_scripts/IodineGBAROMLoadGlueCode.js"></script>
+    <script src="user_scripts/IodineGBAJoyPadGlueCode.js"></script>
+    <script src="user_scripts/IodineGBASavesGlueCode.js"></script>
+    <script src="user_scripts/IodineGBAGraphicsGlueCode.js"></script>
+    <script src="user_scripts/IodineGBAAudioGlueCode.js"></script>
+    <script src="user_scripts/IodineGBACoreGlueCode.js"></script>
+    <script src="user_scripts/base64.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameboy Advance - Gamehub</title>
+    <meta name="keywords"
+        content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
+    <meta name="description"
+        content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
+    <meta name="theme-color" content="#20C20E">
+    <meta name="author" content="Darklife12354">
+    <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="manifest" href="../../../app/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../app/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../app/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../app/favicon/favicon-16x16.png">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../contact.html">Contact</a></li>
+                <li><a href="../../gbc/index.html">GB/GBC</a></li>
+                <li><a href="../../gba/index.html">GBA</a></li>
+                <li><a href="../../n64/supermario.html">GBA</a></li>
+            </ul>
+        </nav>
+    </header>
+    <canvas id="emulator_target" width="240px" height="160px"></canvas>
+    <span id="tempMessage"></span>
+    <script>
+        function resizeCanvas() {
+            const headerHeight = document.querySelector('header').clientHeight;
+            const canvas = document.querySelector('#emulator_target');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight - headerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+
+</html>

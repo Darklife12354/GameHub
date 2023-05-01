@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>RetroGames</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameboy Advance - Gamehub</title>
     <meta name="keywords"
         content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
     <meta name="description"
@@ -12,22 +13,22 @@
     <meta name="theme-color" content="#20C20E">
     <meta name="author" content="Darklife12354">
     <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="manifest" href="app/manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="app/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="app/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="app/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="manifest" href="../../app/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon/favicon-16x16.png">
 </head>
 
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="dir/gbc/index.html">GB/GBC</a></li>
-                <li><a href="dir/gba/index.html">GBA</a></li>
-                <li><a href="dir/n64/supermario.html">N64</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+                <li><a href="../gbc/index.html">GB/GBC</a></li>
+                <li><a href="../n64/supermario.html">N64</a></li>
+                <li><input type="text" id="search" placeholder="Search Games..."></li>
             </ul>
         </nav>
     </header>
@@ -46,22 +47,13 @@
             });
         });
     </script>
-    <script>
-        function loadRom(romUrl) {
-            window.location.href = 'gbc/gameboy.html?rom=' + romUrl;
-        }
-    </script>
     <div id="games">
         <script>
             //Custom Script saving hundreds of lines 
             function rom(name, directory, platform) {
                 var playLink;
-                if (platform === "GB" || platform === "GBC") {
-                    playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
-                } else if (platform === "GBA") {
-                    playLink = '<a href="gba/launcher.html#' + directory + '">Play</a>';
-                } else if (platform === "N64") {
-                    playLink = '<a href="N64/supermario.html">Play</a>';
+                if (platform === "GBA") {
+                    playLink = '<a href="script/launcher.html#' + directory + '">Play</a>';
                 } else {
                     playLink = "Invalid platform";
                     console.log('Error : Not A Valid GB, GBC, Or GBA File.')
@@ -72,23 +64,12 @@
             //Add your own gb roms by giving it a name and the directory and platform such as
             // rom("Name", "roms/rom.gb", "GB");
             var roms = [
-                rom("Pokemon Red", "roms/red.gb", "GB"),
-                rom("Pokemon Red (Color)", "roms/redips.gb", "GB"),
-                rom("Pokemon Blue", "roms/blue.gb", "GB"),
-                rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
-                rom("Pokemon Green", "roms/green.gb", "GB"),
-                rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
-                rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
-                rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
-                rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
                 rom("Pokemon Ruby", "pokemonruby", "GBA"),
                 rom("Pokemon Saphire", "pokemonsaphire", "GBA"),
                 rom("Pokemon Emerald", "pokemonemerald", "GBA"),
                 rom("Pokemon FireRed", "pokemonred", "GBA"),
                 rom("Pokemon LeafGreen", "pokemongreen", "GBA"),
                 rom("Pokemon Mystery Red", "mysteryred", "GBA"),
-                rom("Mario Land", "roms/marioland.gb", "GB"),
-                rom("Mario Land 2", "roms/marioland2.gb", "GB"),
                 rom("Mario Party", "marioparty", "GBA"),
                 rom("Mario Kart", "mariokart", "GBA"),
                 rom("Mario & Luigi Super Star", "superstar", "GBA"),
@@ -96,16 +77,11 @@
                 rom("Mario Advanced 2", "supermarioadvance2", "GBA"),
                 rom("Mario Advanced 3", "supermarioadvance3", "GBA"),
                 rom("Mario Advanced 4", "supermarioadvance4", "GBA"),
-                rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
                 rom("Donkey Kong Country", "dkcountry", "GBA"),
                 rom("Donkey Kong Country 2", "dkcountry2", "GBA"),
                 rom("Donkey Kong Country 3", "dkcountry3", "GBA"),
                 rom("Donkey Kong - King of Swing", "dkkingofswing", "GBA"),
-                rom("PacMan", "roms/pacman.gb", "GB"),
-                rom("PacMan Special Color Edition", "roms/pacmancolor.gbc", "GBC"),
                 rom("PacMan Collection", "pacmancollection", "GBA"),
-                rom("Tetris", "roms/tetris.gb", "GB"),
-                rom("Super Mario 64", "n64/supermario.html", "N64")
             ];
             var romsHtml = "";
             for (var i = 0; i < roms.length; i++) {
@@ -114,30 +90,6 @@
             document.getElementById("games").innerHTML = romsHtml;
         </script>
     </div>
-    <script>
-        if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js')
-        }
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault();
-            deferredPrompt = event;
-            const installButton = document.getElementById('install-button');
-            installButton.style.display = 'block';
-            installButton.addEventListener('click', (event) => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                    installButton.style.display = 'none';
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>

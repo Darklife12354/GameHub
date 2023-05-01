@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    font-family: 'Press Start 2P', cursive;
+    box-sizing: inherit;
+    color: white;
+    user-select: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1%;
+    box-sizing: border-box;
+    background-color: #07091c;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+}
+
+nav {
+    height: 100%;
+    background-color: #101229;
+    border: #141838 solid 1px;
+    box-shadow: 0 2px 6px #232857;
+}
+
+nav input {
+    background-color: #101229;
+    border: none;
+    height: 100%;
+    outline: none;
+    border-right: #141838 1px solid;
+    border-left: #141838 1px solid;
+    font-size: 16px;
+    margin-left: auto;
+    /* add this line to push the search input to the right */
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    height: 100%;
+}
+
+nav a {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.5s;
+}
+
+nav a:hover {
+    background-color: #1b2052;
+    transform: scale(1.01);
+}
+
+
+/* Body */
+#games {
+    padding-top: 70px;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.body {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 4%;
+}
+
+.contact {
+    font-size: 12;
+    border: #141838 1px solid;
+    padding: 20px;
+    box-shadow: 0px 4px 4px #232857;
+}
+
+.box {
+    font-size: 10px;
+    border: #141838 2px solid;
+    padding: 15px;
+    box-shadow: 0px 4px 4px #232857;
+}
+
+.box a {
+    text-decoration: none;
+    width: 100%;
+    padding: 10px;
+    background-color: #101229;
+    border: #141838 2px solid;
+}
+
+.box a:hover {
+    cursor: pointer;
+    background-color: #161940;
+    transform: scale(1.02);
+}
+
+canvas {
+    position: fixed;
+    top: 41px;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 3%;
+    margin: 0;
+    background-color: #303030;
+}
+
+@media screen and (max-width: 575px) {
+    #games {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 991px) {
+    #games {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1439px) {
+    #games {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    #games {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
