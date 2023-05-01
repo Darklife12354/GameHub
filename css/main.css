@@ -185,4 +185,5 @@ canvas {
     background-color: #ccc;
     transform: translateY(-50%);
     cursor: pointer;
+    z-index: 9999;
 }
