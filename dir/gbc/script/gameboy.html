@@ -57,28 +57,6 @@
             </ul>
         </nav>
     </header>
-    <div id="menu">
-        <li id="set_volume">Set Volume</li>
-        <li id="set_speed">Set Speed</li>
-        <li id="restart_cpu_clicker">Restart</li>
-        <li id="run_cpu_clicker">Resume</li>
-        <li id="kill_cpu_clicker">Pause</li>
-    </div>
-    <div id="menu-trigger"></div>
-
-    <script>
-        const menuTrigger = document.getElementById('menu-trigger');
-        const menu = document.getElementById('menu');
-
-        menuTrigger.addEventListener('mouseover', () => {
-            menu.style.display = 'block';
-        });
-
-        menuTrigger.addEventListener('mouseout', () => {
-            menu.style.display = 'none';
-        });
-    </script>
-
     <div id="GameBoy" class="window">
         <div class="menubar">
             <span id="GameBoy_file_menu">File</span>
@@ -92,14 +70,14 @@
             <span id="port_title">Online</span>
         </div>
     </div>
-    <div id="terminal" class="window" style="display: none;">
+    <div id="terminal" class="window">
         <div id="terminal_output" />
         <div class="button_rack">
             <button id="terminal_clear_button" class="left">Clear Messages</button>
             <button id="terminal_close_button" class="right">Close Terminal</button>
         </div>
     </div>
-    <div id="about" class="window"style=" display: none;">
+    <div id="about" class="window">
         <div id="about_message">
             <h1>GameBoy Online</h1>
             <p>This is a GameBoy Color emulator written purely in JavaScript by Grant Galitz.</p>
@@ -121,7 +99,7 @@
             <button id="about_close_button" class="center">Close Popup</button>
         </div>
     </div>
-    <div class="window" id="settings" style="display: none;">
+    <div class="window" id="settings">
         <div id="toggle_settings">
             <div class="setting">
                 <span>Enable Sound:</span>

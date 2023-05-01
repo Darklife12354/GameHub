@@ -122,7 +122,7 @@ canvas {
     top: 41px;
     bottom: 10px;
     left: 0;
-    width: 75%;
+    width: 100%;
     height: 100%;
     padding-bottom: 3%;
     margin: 0;
@@ -151,39 +151,4 @@ canvas {
     #games {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
-}
-
-/* Possibly Settings */
-#menu {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 150px;
-    background-color: #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    display: none;
-    z-index: 9999;
-}
-
-#menu li {
-    list-style: none;
-    padding: 5px;
-    cursor: pointer;
-}
-
-#menu:hover {
-    display: block;
-}
-
-#menu-trigger {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    width: 10px;
-    height: 50px;
-    background-color: #ccc;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 9999;
 }
