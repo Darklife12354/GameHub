@@ -34,6 +34,7 @@ nav {
 }
 
 input {
+    float: right;
     background-color: #101229;
     border: none;
     height: 100%;
@@ -41,6 +42,9 @@ input {
     border-right: #141838 1px solid;
     border-left: #141838 1px solid;
     font-size: 16px;
+}
+#stuff {
+    display: none;
 }
 
 nav ul {
