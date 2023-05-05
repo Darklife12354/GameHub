@@ -11,10 +11,10 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 3%;
+    padding: 1%;
     box-sizing: border-box;
     background-color: #07091c;
-    overflow: auto;
+    overflow: hidden;
 }
 
 /* Header */
@@ -33,8 +33,7 @@ nav {
     box-shadow: 0 2px 6px #232857;
 }
 
-input {
-    float: right;
+nav input {
     background-color: #101229;
     border: none;
     height: 100%;
@@ -42,10 +41,8 @@ input {
     border-right: #141838 1px solid;
     border-left: #141838 1px solid;
     font-size: 16px;
-}
-
-#stuff {
-    display: none;
+    margin-left: auto;
+    /* add this line to push the search input to the right */
 }
 
 nav ul {
@@ -55,6 +52,10 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+nav li {
+    height: 100%;
 }
 
 nav a {
@@ -80,14 +81,7 @@ nav a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
-}
-
-#elements {
-    display: flex;
-}
-
-#search {
-    float: right;
+    overflow: scroll;
 }
 
 .body {
@@ -124,12 +118,15 @@ nav a:hover {
     background-color: #161940;
     transform: scale(1.02);
 }
-#gfx {
-    text-align: center;
-}
+
 canvas {
+    position: fixed;
+    top: 41px;
+    bottom: 10px;
+    left: 0;
     width: 100%;
     height: 100%;
+    padding-bottom: 3%;
     margin: 0;
     background-color: #303030;
 }
@@ -156,43 +153,4 @@ canvas {
     #games {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
-}
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: #140D75 #7D82C2;
-}
-
-/* Chrome, Edge and Safari */
-*::-webkit-scrollbar {
-    width: 10px;
-    width: 10px;
-}
-
-*::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background-color: #7D82C2;
-    border: 1px solid #000000;
-}
-
-*::-webkit-scrollbar-track:hover {
-    background-color: #7D82C2;
-}
-
-*::-webkit-scrollbar-track:active {
-    background-color: #7D82C2;
-}
-
-*::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #140D75;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-    background-color: #2251A3;
-}
-
-*::-webkit-scrollbar-thumb:active {
-    background-color: #3F30A3;
 }
