@@ -43,6 +43,7 @@ input {
     border-left: #141838 1px solid;
     font-size: 16px;
 }
+
 #stuff {
     display: none;
 }
@@ -55,6 +56,7 @@ nav ul {
     margin: 0;
     padding: 0;
 }
+
 nav a {
     height: 100%;
     display: inline-block;
@@ -79,9 +81,11 @@ nav a:hover {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
 }
+
 #elements {
     display: flex;
 }
+
 #search {
     float: right;
 }
@@ -155,4 +159,43 @@ canvas {
     #games {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #140D75 #7D82C2;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #7D82C2;
+    border: 1px solid #000000;
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #7D82C2;
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: #7D82C2;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #140D75;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #2251A3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #3F30A3;
 }
