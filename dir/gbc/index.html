@@ -35,13 +35,13 @@
                     <li><a href="../n64/supermario.html">N64</a></li>
                 </div>
                 <div id="search">
-                    <li><input type="text" id="search" placeholder="Search Games..."></li>
+                    <li><input type="text" id="input" placeholder="Search Games..."></li>
                 </div>
             </ul>
         </nav>
     </header>
     <script>
-        const searchInput = document.getElementById('search');
+        const searchInput = document.getElementById('input');
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
             const boxes = document.querySelectorAll('.box');
