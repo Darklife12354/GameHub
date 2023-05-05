@@ -17,7 +17,7 @@
 <body>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('../sw.js')
+            navigator.serviceWorker.register('sw.js')
         }
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (event) => {
@@ -42,96 +42,14 @@
     <header>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
-                    <input type="text" id="search" placeholder="Search...">
-                </li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+                <li><a href="../dir/gbc/index.html">GB/GBC</a></li>
+                <li><a href="../dir/gba/index.html">GBA</a></li>
+                <li><a href="../dir/n64/supermario.html">N64</a></li>
             </ul>
         </nav>
     </header>
-    <script>
-        //Game Search Bar
-        const searchInput = document.getElementById('search');
-        searchInput.addEventListener('input', function () {
-            const query = this.value.toLowerCase();
-            const boxes = document.querySelectorAll('.box');
-            boxes.forEach(function (box) {
-                const title = box.querySelector('h2').textContent.toLowerCase();
-                if (title.indexOf(query) === -1) {
-                    box.style.display = 'none';
-                } else {
-                    box.style.display = 'block';
-                }
-            });
-        });
-    </script>
-    <div id="games">
-        <script>
-            function rom(name, directory, platform) {
-                var playLink;
-                if (platform === "GB" || platform === "GBC") {
-                    playLink = '<a onclick="loadRom(\'' + directory + '\')">Play</a>';
-                } else if (platform === "GBA") {
-                    playLink = '<a href="gba/launcher.html#' + directory + '">Play</a>';
-                } else {
-                    playLink = "Invalid platform";
-                    console.log('Error : Not A Valid GB, GBC, Or GBA File.')
-                }
-                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3><br>' + playLink + '</span>';
-                return romHtml;
-            }
-            //Add your own roms by giving it a name and the directory and platform such as
-            // rom("Name", "roms/rom.gb", "GB");
-            var roms = [
-                rom("Tetris", "roms/tetris.gb", "GB"),
-                rom("Pokemon Red", "roms/red.gb", "GB"),
-                rom("Pokemon Blue", "roms/blue.gb", "GB"),
-                rom("Pokemon Green (Japanese)", "roms/green.gb", "GB"),
-                rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
-                rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
-                rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
-                rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
-                rom("Mario Land", "roms/marioland.gb", "GB"),
-                rom("Mario Land 2", "roms/marioland2.gb", "GB"),
-                rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
-                rom("Donkey Kong Country", "dkcountry", "GBA"),
-                rom("Donkey Kong Country 2", "dkcountry2", "GBA"),
-                rom("Donkey Kong Country 3", "dkcountry3", "GBA"),
-                rom("Donkey Kong - King of Swings", "dkkingofswing", "GBA"),
-                rom("Pokemon Ruby", "GBA/launcher.html#pokemonruby", "GBA"),
-                rom("Pokemon Saphire", "gba/launcher.html#pokemonsaphire", "GBA"),
-                rom("Pokemon Emerald", "gba/launcher.html#pokemonemerald", "GBA"),
-                rom("Pokemon FireRed", "gba/launcher.html#pokemonred", "GBA"),
-                rom("Pokemon LeafGreen", "gba/launcher.html#pokemongreen", "GBA"),
-                rom("Mario Kart", "gba/launcher.html#mariokart", "GBA"),
-                rom("Pokemon Mystery Red", "gba/launcher.html#mysteryred", "GBA"),
-                rom("Mario Party", "gba/launcher.html#marioparty", "GBA"),
-                rom("Mario & Luigi Super Star", "gba/launcher.html#superstar", "GBA"),
-                rom("Mario Advanced", "gba/launcher.html#supermarioadvance", "GBA"),
-                rom("Mario Advanced 2", "gba/launcher.html#supermarioadvance2", "GBA"),
-                rom("Mario Advanced 3", "gba/launcher.html#supermarioadvance3", "GBA"),
-                rom("Mario Advanced 4", "gba/launcher.html#supermarioadvance4", "GBA")
-            ];
-
-            var romsHtml = "";
-            for (var i = 0; i < roms.length; i++) {
-                romsHtml += roms[i];
-            }
-            document.getElementById("games").innerHTML = romsHtml;
-
-            //Load Rom Function For Gameboy And Gameboy Colour Roms
-            function loadRom(romUrl) {
-                window.location.href = 'gbc/gameboy.html?rom=' + romUrl;
-            }
-        </script>
-        <span class="box">
-            <h2>Super Mario 64</h2>
-            <h3>N64</h3>
-            <br>
-            <a href="n64/index.html">Play</a>
-        </span>
-    </div>
 </body>
 
 </html>
