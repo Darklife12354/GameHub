@@ -33,7 +33,7 @@ nav {
     box-shadow: 0 2px 6px #232857;
 }
 
-nav input {
+input {
     background-color: #101229;
     border: none;
     height: 100%;
@@ -41,8 +41,6 @@ nav input {
     border-right: #141838 1px solid;
     border-left: #141838 1px solid;
     font-size: 16px;
-    margin-left: auto;
-    /* add this line to push the search input to the right */
 }
 
 nav ul {
@@ -53,11 +51,6 @@ nav ul {
     margin: 0;
     padding: 0;
 }
-
-nav li {
-    height: 100%;
-}
-
 nav a {
     height: 100%;
     display: inline-block;
@@ -82,6 +75,9 @@ nav a:hover {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
     overflow: scroll;
+}
+#search {
+    margin-right: auto;
 }
 
 .body {
