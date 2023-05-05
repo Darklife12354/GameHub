@@ -81,6 +81,7 @@ nav a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px;
+    overflow: scroll;
 }
 
 .body {
