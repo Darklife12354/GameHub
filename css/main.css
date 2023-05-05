@@ -124,15 +124,12 @@ nav a:hover {
     background-color: #161940;
     transform: scale(1.02);
 }
-
+#gfx {
+    text-align: center;
+}
 canvas {
-    position: fixed;
-    top: 41px;
-    bottom: 10px;
-    left: 0;
     width: 100%;
     height: 100%;
-    padding-bottom: 3%;
     margin: 0;
     background-color: #303030;
 }
