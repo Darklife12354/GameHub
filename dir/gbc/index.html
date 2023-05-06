@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gameboy - GameHub</title>
     <meta name="keywords"
@@ -11,7 +12,6 @@
         content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
     <meta name="theme-color" content="#20C20E">
     <meta name="author" content="Darklife12354">
-    <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="manifest" href="../../app/manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
@@ -20,11 +20,6 @@
 </head>
 
 <body>
-    <script>
-        function loadRom(romUrl) {
-            window.location.href = 'script/gameboy.html?rom=' + romUrl;
-        }
-    </script>
     <header>
         <nav>
             <ul>
@@ -37,7 +32,11 @@
             </ul>
         </nav>
     </header>
+    <div id="games"></div>
     <script>
+        function loadRom(romUrl) {
+            window.location.href = 'script/gameboy.html?rom=' + romUrl;
+        }
         const searchInput = document.getElementById('input');
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
@@ -51,49 +50,46 @@
                 }
             });
         });
+        function rom(name, directory, platform) {
+            var playLink;
+            if (platform === "GB" || platform === "GBC") {
+                playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
+            } else {
+                playLink = "Invalid platform";
+                console.log('Error: Not a valid GB or GBC file.');
+            }
+            var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3>' + playLink + '</span>';
+            return romHtml;
+        }
+        var roms = [
+            rom("4 in 1", "roms/4in1.gb", "GB"),
+            rom("4 in 1 V2", "roms/4in1V2.gb", "GB"),
+            rom("Addams Family", "roms/AddamsFamily.gb", "GB"),
+            rom("Addams Family: Pugsley's Scavenger Hunt", "roms/AddamsFamilyPugsley.gb", "GB"),
+            rom("Adventure Island", "roms/AdventureIsland.gb", "GB"),
+            rom("Adventure Island II: Aliens In Paradise", "roms/AdventureIslandIIAliens.gb", "GB"),
+            rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
+            rom("Mario Land", "roms/marioland.gb", "GB"),
+            rom("Mario Land 2", "roms/marioland2.gb", "GB"),
+            rom("PacMan", "roms/pacman.gb", "GB"),
+            rom("PacMan Special Color Edition", "roms/pacmancolor.gbc", "GBC"),
+            rom("Pokemon Blue", "roms/blue.gb", "GB"),
+            rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
+            rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
+            rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
+            rom("Pokemon Green", "roms/green.gb", "GB"),
+            rom("Pokemon Red", "roms/red.gb", "GB"),
+            rom("Pokemon Red (Color)", "roms/redips.gb", "GB"),
+            rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
+            rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
+            rom("Tetris", "roms/tetris.gb", "GB")
+        ];
+        var romsHtml = "";
+        for (var i = 0; i < roms.length; i++) {
+            romsHtml += roms[i];
+        }
+        document.getElementById("games").innerHTML = romsHtml;
     </script>
-    <div id="games">
-        <script>
-            function rom(name, directory, platform) {
-                var playLink;
-                if (platform === "GB" || platform === "GBC") {
-                    playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
-                } else {
-                    playLink = "Invalid platform";
-                    console.log('Error : Not A Valid GB, Or GBC File.')
-                }
-                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3>' + playLink + '</span>';
-                return romHtml;
-            }
-            var roms = [
-                rom("4 in 1", "roms/4in1.gb", "GB"),
-                rom("4 in 1 V2", "roms/4in1V2.gb", "GB"),
-                rom("Addams Family", "roms/AddamsFamily.gb", "GB"),
-                rom("Addams Family : Pugsley's Scavenger Hunt", "roms/AddamsFamilyPugsley.gb", "GB"),
-                rom("Adventure Island", "roms/AdventureIsland.gb", "GB"),
-                rom("Adventure Island II : Aliens In Paradise", "roms/AdventureIslandIIAliens.gb", "GB"),
-                rom("Donkey Kong", "roms/donkeykong.gb", "GB"),
-                rom("Mario Land", "roms/marioland.gb", "GB"),
-                rom("Mario Land 2", "roms/marioland2.gb", "GB"),
-                rom("PacMan", "roms/pacman.gb", "GB"),
-                rom("PacMan Special Color Edition", "roms/pacmancolor.gbc", "GBC"),
-                rom("Pokemon Blue", "roms/blue.gb", "GB"),
-                rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
-                rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
-                rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
-                rom("Pokemon Green", "roms/green.gb", "GB"),
-                rom("Pokemon Red", "roms/red.gb", "GB"),
-                rom("Pokemon Red (Color)", "roms/redips.gb", "GB"),
-                rom("Pokemon Silver", "roms/silver.gbc", "GBC"),
-                rom("Pokemon Yellow", "roms/yellow.gbc", "GBC"),
-                rom("Tetris", "roms/tetris.gb", "GB"),];
-
-            var romsHtml = "";
-            for (var i = 0; i < roms.length; i++) {
-                romsHtml += roms[i];
-            }
-            document.getElementById("games").innerHTML = romsHtml;
-        </script>
     </div>
 </body>
 

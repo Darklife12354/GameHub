@@ -4,52 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>RetroGames</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Home</title>
+    <meta name="keywords"
+        content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
+    <meta name="description"
+        content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
     <meta name="theme-color" content="#20C20E">
-    <link rel="stylesheet" href="../main.css">
+    <meta name="author" content="Darklife12354">
+    <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <script>
+        function loadCSS(url) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = url;
+            document.head.appendChild(link);
+        }
+        loadCSS('../css/main.css');
+    </script>
 </head>
 
 <body>
-    <script>
-        if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js')
-        }
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault();
-            deferredPrompt = event;
-            const installButton = document.getElementById('install-button');
-            installButton.style.display = 'block';
-            installButton.addEventListener('click', (event) => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                    installButton.style.display = 'none';
-                });
-            });
-        });
-    </script>
     <header>
         <nav>
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-                <li><a href="../dir/gbc/index.html">GB/GBC</a></li>
-                <li><a href="../dir/gba/index.html">GBA</a></li>
-                <li><a href="../dir/n64/supermario.html">N64</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dir/gbc/index.html">GB/GBC</a></li>
+                <li><a href="dir/gba/index.html">GBA</a></li>
+                <li><a href="dir/n64/supermario.html">N64</a></li>
             </ul>
         </nav>
     </header>
+    <script>
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('../sw.js')
+        }
+    </script>
 </body>
 
 </html>
