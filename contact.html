@@ -12,11 +12,22 @@
         content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
     <meta name="theme-color" content="#20C20E">
     <meta name="author" content="Darklife12354">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' example.com; style-src 'self' example.com;">
     <link rel="stylesheet" href="css/main.css">
     <link rel="manifest" href="app/manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="app/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="app/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="app/favicon/favicon-16x16.png">
+
+    <script>
+        function loadCSS(url) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = url;
+            document.head.appendChild(link);
+        }
+        loadCSS('css/main.css');
+    </script>
 </head>
 
 <body>

@@ -25,6 +25,16 @@
       scrollbar-width: none;
     }
   </style>
+
+<script>
+  function loadCSS(url) {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = url;
+      document.head.appendChild(link);
+  }
+  loadCSS('css/main.css');
+</script>
 </head>
 
 <body>
