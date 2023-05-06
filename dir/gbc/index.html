@@ -28,15 +28,12 @@
     <header>
         <nav>
             <ul>
-                <div id="elements">
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="../../contact.html">Contact</a></li>
-                    <li><a href="../gba/index.html">GBA</a></li>
-                    <li><a href="../n64/supermario.html">N64</a></li>
-                </div>
-                <div id="search">
-                    <li><input type="text" id="input" placeholder="Search Games..."></li>
-                </div>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+                <li><a href="index.html" class="active">GB/GBC</a></li>
+                <li><a href="../gba/index.html">GBA</a></li>
+                <li><a href="../n64/supermario.html">N64</a></li>
+                <li><input type="text" id="input" placeholder="Search Games..."></li>
             </ul>
         </nav>
     </header>
@@ -65,7 +62,7 @@
                     playLink = "Invalid platform";
                     console.log('Error : Not A Valid GB, Or GBC File.')
                 }
-                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3><br>' + playLink + '</span>';
+                var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3>' + playLink + '</span>';
                 return romHtml;
             }
             var roms = [

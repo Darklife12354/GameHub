@@ -27,13 +27,14 @@
                 <li><a href="../../index.html">Home</a></li>
                 <li><a href="../../contact.html">Contact</a></li>
                 <li><a href="../gbc/index.html">GB/GBC</a></li>
+                <li><a href="../gba/index.html" class="active">GBA</a></li>
                 <li><a href="../n64/supermario.html">N64</a></li>
-                <li><input type="text" id="search" placeholder="Search Games..."></li>
+                <li><input type="text" id="input" placeholder="Search Games..."></li>
             </ul>
         </nav>
     </header>
     <script>
-        const searchInput = document.getElementById('search');
+        const searchInput = document.getElementById('input');
         searchInput.addEventListener('input', function () {
             const query = this.value.toLowerCase();
             const boxes = document.querySelectorAll('.box');
@@ -49,20 +50,17 @@
     </script>
     <div id="games">
         <script>
-            //Custom Script saving hundreds of lines 
             function rom(name, directory, platform) {
                 var playLink;
                 if (platform === "GBA") {
                     playLink = '<a href="script/launcher.html#' + directory + '">Play</a>';
                 } else {
                     playLink = "Invalid platform";
-                    console.log('Error : Not A Valid GB, GBC, Or GBA File.')
+                    console.log('Error : Not A Valid GBA File.')
                 }
                 var romHtml = '<span class="box"><h2>' + name + '</h2><h3>' + platform + '</h3><br>' + playLink + '</span>';
                 return romHtml;
             }
-            //Add your own gb roms by giving it a name and the directory and platform such as
-            // rom("Name", "roms/rom.gb", "GB");
             var roms = [
                 rom("Pokemon Ruby", "pokemonruby", "GBA"),
                 rom("Pokemon Saphire", "pokemonsaphire", "GBA"),
