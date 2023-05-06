@@ -4,13 +4,11 @@ A repository of retro games for the Gameboy, Gameboy Color, Gameboy Advance, and
 
 ## How to Play
 
-To enjoy the retro games provided on RetroGames, follow these steps:
-
 1. Visit the [RetroGames website](https://retrogamesv1.netlify.app/) or clone the repository to your local machine. (But you have to run it through a local server!)
 2. Start playing and relive the magic of retro gaming!
 
-Please note that all games are playable directly on our website, so there's no need to download any files or clone the repository. Simply visit the website and have fun playing!
+Please note I don't have all games but I will keep adding new ones.
 
-If you encounter any issues or have any questions, feel free to contact us through the website's contact page.
+If you encounter any issues or have any questions, feel free to contact me through the website's contact page.
 
 Enjoy your retro gaming experience!
