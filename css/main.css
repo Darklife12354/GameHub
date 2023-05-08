@@ -12,7 +12,7 @@ body {
     padding: 1%;
     box-sizing: border-box;
     background-color: #07091c;
-    text-align: center;
+    align-items: center;
 }
 
 header {
