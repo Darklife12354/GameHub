@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /dir/
+Disallow:
 
 Sitemap: https://retrogamesv1.netlify.app/sitemap.xml
