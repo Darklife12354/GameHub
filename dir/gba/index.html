@@ -17,6 +17,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon/favicon-16x16.png">
+    <link rel="preload" href="../../css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../../css/main.css">
+    </noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    </noscript>
+    <link rel="canonical" href="https://retrogamesv1.netlify.app"/>
+    <link rel="manifest" href="../../app/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../app/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../app/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../app/favicon/favicon-16x16.png">
 
     <script>
         function loadCSS(url) {
@@ -25,7 +39,7 @@
             link.href = url;
             document.head.appendChild(link);
         }
-        loadCSS('css/main.css');
+        loadCSS('../../css/main.css');
     </script>
 </head>
 <body>
