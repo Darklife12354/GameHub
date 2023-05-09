@@ -157,7 +157,14 @@ canvas {
         height: 50%;
     }
     .gamepad {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    .gamepad button {
+        margin: 5px;
     }
 }
 
