@@ -48,10 +48,10 @@ function keyUpPreprocess(e) {
             raiseVolume();
             break;
         case 51:
-            Iodine.incrementSpeed(0.10);
+            Iodine.incrementSpeed(0.5);
             break;
         case 52:
-            Iodine.incrementSpeed(-0.10);
+            Iodine.incrementSpeed(-0.50);
             break;
         default:
             keyUp(keyCode);
