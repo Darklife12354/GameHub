@@ -156,16 +156,6 @@ canvas {
     canvas {
         height: 50%;
     }
-    .gamepad {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        margin-top: 10px;
-    }
-
-    .gamepad button {
-        margin: 5px;
-    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
