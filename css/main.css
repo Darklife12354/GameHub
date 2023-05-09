@@ -150,6 +150,9 @@ canvas {
     #games {
         grid-template-columns: 1fr;
     }
+    canvas {
+        height: 50%;
+    }
 }
 
 @media screen and (min-width: 576px) and (max-width: 991px) {
