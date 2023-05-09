@@ -145,6 +145,9 @@ canvas {
     margin: 0;
     background-color: #303030;
 }
+.gamepad {
+    display: none;
+}
 
 @media screen and (max-width: 575px) {
     #games {
@@ -152,6 +155,9 @@ canvas {
     }
     canvas {
         height: 50%;
+    }
+    .gamepad {
+        display: block;
     }
 }
 
