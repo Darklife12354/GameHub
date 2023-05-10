@@ -6,29 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - GameHub</title>
-    <meta name="keywords"
-        content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
     <meta name="description"
         content="Play classic games from the Gameboy, Gameboy Color, Gameboy Advance, and Nintendo 64 on your computer with our emulator and ROMs.">
-    <meta name="theme-color" content="#20C20E">
     <meta name="author" content="Darklife12354">
+    <meta name="theme-color" content="#20C20E">
+    <meta name="keywords"
+        content="Gameboy emulator, Gameboy Color emulator, Gameboy Advance emulator, Nintendo 64 emulator, ROMs, retro gaming">
     <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
-
-    <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="css/main.css">
-    </noscript>
+    <link rel="canonical" href="https://retrogamesv1.netlify.app">
+    <link rel="manifest" href="app/manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="app/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="app/favicon/favicon-16x16.png">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     </noscript>
-    <link rel="canonical" href="https://retrogamesv1.netlify.app/index.html"/>
-    <link rel="manifest" href="app/manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="app/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="app/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="app/favicon/favicon-16x16.png">
-
     <script>
         function loadCSS(url) {
             var link = document.createElement('link');
@@ -54,7 +49,7 @@
     </header>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('sw.js');
         }
     </script>
 </body>
