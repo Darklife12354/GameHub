@@ -47,11 +47,9 @@ function registerBIOS() {
 }
 function downloadROM(gamename) {
     Iodine.pause();
-    showTempString("Downloading \"" + games[gamename] + ".\"");
     downloadFile("Binaries/" + gamename + ".gba", registerROM);
 }
 function registerROM() {
-    clearTempString();
     processDownload(this, attachROM);
     if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)) {
         Iodine.disableAudio();
@@ -82,20 +80,6 @@ function lowerVolume() {
 }
 function raiseVolume() {
     Iodine.incrementVolume(0.04);
-}
-function writeRedTemporaryText(textString) {
-    if (timerID) {
-        clearTimeout(timerID);
-    }
-    showTempString(textString);
-    timerID = setTimeout(clearTempString, 5000);
-}
-function showTempString(textString) {
-    document.getElementById("tempMessage").style.display = "block";
-    document.getElementById("tempMessage").textContent = textString;
-}
-function clearTempString() {
-    document.getElementById("tempMessage").style.display = "none";
 }
 function addEvent(sEvent, oElement, fListener) {
     try {    
