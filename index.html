@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - GameHub</title>
     <meta name="keywords"
@@ -15,15 +14,13 @@
     <meta name="google-site-verification" content="4SxCiUcu8vwEL8gxqIJgBfzxk4YfEWYhNM7WG1eDfBw">
 
     <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="css/main.css">
-    </noscript>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
+        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     </noscript>
-    <link rel="canonical" href="https://retrogamesv1.netlify.app/index.html"/>
+    <link rel="canonical" href="https://retrogamesv1.netlify.app/index.html" />
     <link rel="manifest" href="app/manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="app/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="app/favicon/favicon-32x32.png">
@@ -52,9 +49,20 @@
             </ul>
         </nav>
     </header>
+
     <script>
         if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('sw.js').then((registration) => {
+                if ('periodicSync' in registration) {
+                    registration.periodicSync.register('myPeriodicSync', {
+                        minInterval: 24 * 60 * 60 * 1000, // Set the minimum interval (24 hours in this example)
+                    });
+                }
+
+                if ('sync' in registration) {
+                    registration.sync.register('myBackgroundSync');
+                }
+            });
         }
     </script>
 </body>

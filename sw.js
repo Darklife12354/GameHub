@@ -39,3 +39,19 @@ self.addEventListener('fetch', (event) => {
         })());
     }
 });
+self.addEventListener('periodicsync', (event) => {
+    if (event.tag === 'myPeriodicSync') {
+        event.waitUntil(doPeriodicSync());
+    }
+});
+self.addEventListener('sync', (event) => {
+    if (event.tag === 'myBackgroundSync') {
+        event.waitUntil(doBackgroundSync());
+    }
+});
+async function doPeriodicSync() {
+    console.log('Periodic sync event fired');
+}
+async function doBackgroundSync() {
+    console.log('Background sync event fired');
+}
