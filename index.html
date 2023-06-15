@@ -55,7 +55,7 @@
             navigator.serviceWorker.register('sw.js').then((registration) => {
                 if ('periodicSync' in registration) {
                     registration.periodicSync.register('myPeriodicSync', {
-                        minInterval: 24 * 60 * 60 * 1000, // Set the minimum interval (24 hours in this example)
+                        minInterval: 24 * 60 * 60 * 1000,
                     });
                 }
 
