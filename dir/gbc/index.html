@@ -108,7 +108,7 @@
         }
         document.getElementById("games").innerHTML = romsHtml;
         if (typeof navigator.serviceWorker !== 'undefined') {
-            navigator.serviceWorker.register('sw.js').then((registration) => {
+            navigator.serviceWorker.register('../../sw.js').then((registration) => {
                 if ('periodicSync' in registration) {
                     registration.periodicSync.register('myPeriodicSync', {
                         minInterval: 24 * 60 * 60 * 1000,
