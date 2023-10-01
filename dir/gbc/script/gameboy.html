@@ -43,20 +43,21 @@
         function getQueryParam(param) {
             var urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
-            function loadCSS(url) {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = url;
-                document.head.appendChild(link);
-            }
+        }
+        function loadCSS(url) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = url;
+            document.head.appendChild(link);
+        };
 
-            var DEBUG_MESSAGES = false;
-            var DEBUG_WINDOWING = false;
-            window.onload = () => {
-                windowingInitialize();
-                gbc_load_url(getQueryParam('rom'));
-            };
-            loadCSS('../../../css/main.css');
+        var DEBUG_MESSAGES = false;
+        var DEBUG_WINDOWING = false;
+        window.onload = () => {
+            windowingInitialize();
+            gbc_load_url(getQueryParam('rom'));
+        };
+        loadCSS('../../../css/main.css');
     </script>
 </head>
 
