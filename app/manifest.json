@@ -8,7 +8,7 @@
   "scope": "/",
   "short_name": "RetroGames",
   "start_url": "/",
-  "theme_color": "#20C20E",
+  "theme_color": "#2b2b2b",
   "categories": ["entertainment", "games"],
   "screenshots": [],
   "icons": [
