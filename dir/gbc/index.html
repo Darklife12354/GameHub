@@ -99,6 +99,7 @@
             romsHtml += roms[i];
         }
         document.getElementById("games").innerHTML = romsHtml;
+        
         if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('../../sw.js').then((registration) => {
                 if ('periodicSync' in registration) {

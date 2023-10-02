@@ -77,7 +77,7 @@
         </nav>
     </header>
     <div id="GameBoy" class="window">
-        <div class="menubar" style="display: none;"> 
+        <div class="menubar" style="display: none;">
             <span id="GameBoy_file_menu">File</span>
             <span id="GameBoy_settings_menu">Settings</span>
             <span id="GameBoy_view_menu">View</span>
@@ -89,14 +89,14 @@
             <span id="port_title">Online</span>
         </div>
     </div>
-    <div id="stuff" style="display: none;"> 
+    <div id="stuff" style="display: none;">
         <div id="terminal" class="window">
             <div id="terminal_output">
-            <div class="button_rack">
-                <button id="terminal_clear_button" class="left">Clear Messages</button>
-                <button id="terminal_close_button" class="right">Close Terminal</button>
+                <div class="button_rack">
+                    <button id="terminal_clear_button" class="left">Clear Messages</button>
+                    <button id="terminal_close_button" class="right">Close Terminal</button>
+                </div>
             </div>
-        </div>
             <div class="button_rack">
                 <button id="about_close_button" class="center">Close Popup</button>
             </div>
@@ -255,6 +255,22 @@
             <canvas id="fullscreen" class="maximum" />
         </div>
     </div>
+    <script>
+
+        if (typeof navigator.serviceWorker !== 'undefined') {
+            navigator.serviceWorker.register('../../../sw.js').then((registration) => {
+                if ('periodicSync' in registration) {
+                    registration.periodicSync.register('myPeriodicSync', {
+                        minInterval: 24 * 60 * 60 * 1000,
+                    });
+                }
+
+                if ('sync' in registration) {
+                    registration.sync.register('myBackgroundSync');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
