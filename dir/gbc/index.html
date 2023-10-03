@@ -69,7 +69,7 @@
         });
         function rom(name, directory, platform) {
             var playLink;
-            if (platform === "GB" || platform === "GBC") {
+            if (platform === "GB" || platform === "GBC" || platform==="ROMHACK") {
                 playLink = '<a href="#" onclick="loadRom(\'' + directory + '\')">Play</a>';
             } else {
                 playLink = "Invalid platform";
@@ -86,7 +86,7 @@
             rom("Pokemon Blue", "roms/blue.gb", "GB"),
             rom("Pokemon Blue (Color)", "roms/blueips.gb", "GB"),
             rom("Pokemon Crystal", "roms/crystal.gbc", "GBC"),
-            rom("Pokemon Polished Crystal", "roms/polishedcrystal.gbc", "GBC"),
+            rom("Pokemon Polished Crystal", "roms/polishedcrystal.gbc", "ROMHACK"),
             rom("Pokemon Gold", "roms/gold.gbc", "GBC"),
             rom("Pokemon Green", "roms/green.gb", "GB"),
             rom("Pokemon Red", "roms/red.gb", "GB"),
