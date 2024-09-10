@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://retrogamesv1.netlify.app/sitemap.xml
+Sitemap: https://notagamesite84.netlify.app/sitemap.xml
