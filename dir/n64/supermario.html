@@ -96,6 +96,16 @@
       })(),
       setStatus: function (text) { },
     };
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'y') {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      }
+    });
   </script>
   <script async type="text/javascript" src="sm64.us.f3dex2e.js"></script>
   <script></script>
